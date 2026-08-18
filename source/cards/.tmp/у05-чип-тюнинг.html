@@ -6,7 +6,9 @@
       repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 22px, rgba(255,255,255,0) 22px 44px),
       linear-gradient(160deg,#3a3f47,#22262c 60%,#15181c);}
   .scrim{position:absolute;inset:0;background:linear-gradient(to bottom, #16181D 30%, rgba(22,24,29,.76) 58%, rgba(22,24,29,.12))}
-  .wrap{position:absolute;inset:0;padding:64px;display:flex;flex-direction:column;justify-content:flex-start}
+  /* у квадрата левое поле большое: в мобильных Картах логотип организации
+     рисуется плашкой поверх ленты фото и занимает x 5–27 %, y 23–44 % кадра */
+  .wrap{position:absolute;inset:0;padding:56px 64px 64px 348px;display:flex;flex-direction:column;justify-content:flex-start}
   .logo{display:flex;align-items:center;gap:18px}
   .mark{width:74px;height:74px;border-radius:18px;background:#FF8A1F;display:flex;align-items:center;justify-content:center;flex:none}
   .mark svg{width:44px;height:44px}
@@ -14,24 +16,29 @@
   .wordmark b{display:block;font-size:40px;font-weight:800;letter-spacing:-.02em;color:#FFFFFF}
   .wordmark span{display:block;font-size:21px;font-weight:600;letter-spacing:.22em;color:rgba(255,255,255,0.62);margin-top:8px}
   .top{position:relative}
-  .bottom{position:relative;margin-top:52px}
-  .kicker{font-size:26px;font-weight:700;letter-spacing:.2em;color:#FF8A1F;margin-bottom:22px}
-  .h1{font-size:84px;font-weight:800;line-height:.98;letter-spacing:-.03em;color:#FFFFFF}
+  .bottom{position:relative;margin-top:40px}
+  .kicker{font-size:24px;font-weight:700;letter-spacing:.2em;color:#FF8A1F;margin-bottom:18px}
+  .h1{font-size:68px;font-weight:800;line-height:.98;letter-spacing:-.03em;color:#FFFFFF}
   .mid{margin:auto 0}
   .rule{width:132px;height:10px;background:#FF8A1F;border-radius:5px;margin:44px 0 52px}
   ul{list-style:none;display:flex;flex-direction:column;gap:34px}
   li{display:flex;gap:26px;align-items:flex-start;font-size:42px;font-weight:600;line-height:1.24;color:#FFFFFF}
   li em{font-style:normal;color:#FF8A1F;font-weight:800;flex:none}
-  .price{margin-top:34px;display:inline-flex;align-items:baseline;gap:14px;background:#FF8A1F;border-radius:16px;padding:18px 30px}
+  .price{margin-top:28px;display:inline-flex;align-items:baseline;gap:14px;background:#FF8A1F;border-radius:16px;padding:18px 30px}
   .price i{font-style:normal;font-size:28px;font-weight:700;color:#16181D;opacity:.8}
   .price b{font-size:52px;font-weight:800;color:#16181D;letter-spacing:-.02em}
   .foot{margin-top:auto;border-top:3px solid rgba(255,255,255,.22);padding-top:44px}
   .foot .ph{font-size:56px;font-weight:800;color:#FFFFFF;letter-spacing:-.02em}
   .foot .ad{font-size:30px;font-weight:500;color:rgba(255,255,255,0.62);margin-top:14px}
   </style><div class="photo"></div><div class="scrim"></div><div class="wrap">
-    <div class="top"><div class="logo"><div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2" stroke-linecap="round">
-    <path d="M3 13l2-5.5A2 2 0 016.9 6h10.2a2 2 0 011.9 1.5L21 13"/><path d="M3 13h18v4H3z"/>
-    <circle cx="7" cy="17.5" r="1.6" fill="#16181D" stroke="none"/><circle cx="17" cy="17.5" r="1.6" fill="#16181D" stroke="none"/></svg></div>
+    <div class="top"><div class="logo"><div class="mark"><svg viewBox="0 0 200 200">
+    <g transform="translate(100 100) rotate(-16) scale(0.98) translate(-102.5 -90)">
+      <g fill="none" stroke="#16181D" stroke-width="17" stroke-linecap="round">
+        <path d="M66 88 H 44 Q 30 88 30 70 V 52"/><path d="M146 100 H 174"/>
+      </g>
+      <rect x="46" y="72" width="106" height="56" rx="28" fill="#16181D"/>
+      <ellipse cx="175" cy="100" rx="4.5" ry="7.5" fill="#FF8A1F"/>
+    </g></svg></div>
     <div class="wordmark"><b>ВЫХЛОП-ЭКСПЕРТ</b><span>КРАСНОГОРСК</span></div></div></div>
     <div class="bottom">
       <div class="kicker">ЧИП-ТЮНИНГ</div>

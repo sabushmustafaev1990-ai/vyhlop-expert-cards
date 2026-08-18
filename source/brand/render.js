@@ -41,9 +41,15 @@ function html(card) {
 
   if (card.фото && !fs.existsSync(path.join(PHOTOS, card.фото))) missing.add(card.фото);
 
-  const mark = `<svg viewBox="0 0 24 24" fill="none" stroke="${c.на_акценте}" stroke-width="2.2" stroke-linecap="round">
-    <path d="M3 13l2-5.5A2 2 0 016.9 6h10.2a2 2 0 011.9 1.5L21 13"/><path d="M3 13h18v4H3z"/>
-    <circle cx="7" cy="17.5" r="1.6" fill="${c.на_акценте}" stroke="none"/><circle cx="17" cy="17.5" r="1.6" fill="${c.на_акценте}" stroke="none"/></svg>`;
+  // тот же глушитель, что и в логотипе организации (brand/marks.js)
+  const mark = `<svg viewBox="0 0 200 200">
+    <g transform="translate(100 100) rotate(-16) scale(0.98) translate(-102.5 -90)">
+      <g fill="none" stroke="${c.на_акценте}" stroke-width="17" stroke-linecap="round">
+        <path d="M66 88 H 44 Q 30 88 30 70 V 52"/><path d="M146 100 H 174"/>
+      </g>
+      <rect x="46" y="72" width="106" height="56" rx="28" fill="${c.на_акценте}"/>
+      <ellipse cx="175" cy="100" rx="4.5" ry="7.5" fill="${c.акцент}"/>
+    </g></svg>`;
 
   const logo = `<div class="logo"><div class="mark">${mark}</div>
     <div class="wordmark"><b>${esc(F.название)}</b>${F.подпись ? `<span>${esc(F.подпись)}</span>` : ''}</div></div>`;
@@ -79,7 +85,9 @@ function html(card) {
   .scrim{position:absolute;inset:0;background:${story
     ? `linear-gradient(to top, ${c.фон} 30%, rgba(22,24,29,.74) 55%, rgba(22,24,29,.18))`
     : `linear-gradient(to bottom, ${c.фон} 30%, rgba(22,24,29,.76) 58%, rgba(22,24,29,.12))`}}
-  .wrap{position:absolute;inset:0;padding:${story ? '96px ' + pad + 'px' : pad + 'px'};display:flex;flex-direction:column;${story ? '' : 'justify-content:flex-start'}}
+  /* у квадрата левое поле большое: в мобильных Картах логотип организации
+     рисуется плашкой поверх ленты фото и занимает x 5–27 %, y 23–44 % кадра */
+  .wrap{position:absolute;inset:0;padding:${story ? '96px ' + pad + 'px' : `56px ${pad}px ${pad}px 348px`};display:flex;flex-direction:column;${story ? '' : 'justify-content:flex-start'}}
   .logo{display:flex;align-items:center;gap:18px}
   .mark{width:74px;height:74px;border-radius:18px;background:${c.акцент};display:flex;align-items:center;justify-content:center;flex:none}
   .mark svg{width:44px;height:44px}
@@ -87,15 +95,15 @@ function html(card) {
   .wordmark b{display:block;font-size:40px;font-weight:800;letter-spacing:-.02em;color:${c.текст}}
   .wordmark span{display:block;font-size:21px;font-weight:600;letter-spacing:.22em;color:${c.текст_приглушённый};margin-top:8px}
   .top{position:relative}
-  .bottom{position:relative;margin-top:${story ? 'auto' : '52px'}}
-  .kicker{font-size:${story ? 30 : 26}px;font-weight:700;letter-spacing:.2em;color:${c.акцент};margin-bottom:22px}
-  .h1{font-size:${story ? 108 : 84}px;font-weight:800;line-height:.98;letter-spacing:-.03em;color:${c.текст}}
+  .bottom{position:relative;margin-top:${story ? 'auto' : '40px'}}
+  .kicker{font-size:${story ? 30 : 24}px;font-weight:700;letter-spacing:.2em;color:${c.акцент};margin-bottom:${story ? 22 : 18}px}
+  .h1{font-size:${story ? 108 : 68}px;font-weight:800;line-height:.98;letter-spacing:-.03em;color:${c.текст}}
   .mid{margin:auto 0}
   .rule{width:132px;height:10px;background:${c.акцент};border-radius:5px;margin:44px 0 52px}
   ul{list-style:none;display:flex;flex-direction:column;gap:34px}
   li{display:flex;gap:26px;align-items:flex-start;font-size:42px;font-weight:600;line-height:1.24;color:${c.текст}}
   li em{font-style:normal;color:${c.акцент};font-weight:800;flex:none}
-  .price{margin-top:34px;display:inline-flex;align-items:baseline;gap:14px;background:${c.акцент};border-radius:${T.радиус_плашки}px;padding:18px 30px}
+  .price{margin-top:${story ? 34 : 28}px;display:inline-flex;align-items:baseline;gap:14px;background:${c.акцент};border-radius:${T.радиус_плашки}px;padding:18px 30px}
   .price i{font-style:normal;font-size:28px;font-weight:700;color:${c.на_акценте};opacity:.8}
   .price b{font-size:52px;font-weight:800;color:${c.на_акценте};letter-spacing:-.02em}
   .foot{margin-top:auto;border-top:3px solid rgba(255,255,255,.22);padding-top:44px}

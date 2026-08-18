@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Проверка безопасной зоны</title>
+<!-- Накладывает на готовые карточки замеры с мобильной карточки Яндекс Карт:
+     видна только верхняя 54 % высоты снимка, плашка логотипа занимает x 5–27 %, y 23–44 %. -->
+<style>
+  html,body{margin:0;padding:0}
+  body{width:1180px;background:#fff;padding:28px;
+       font:400 15px/1.35 -apple-system,'SF Pro Text','Helvetica Neue',sans-serif;color:#16181D}
+  h1{font-size:20px;margin:0 0 6px}
+  p{color:#6E6E76;margin:0 0 20px}
+  .сетка{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .кадр{position:relative;width:100%;aspect-ratio:1}
+  .кадр img{width:100%;display:block;border-radius:10px}
+  .плашка{position:absolute;left:5%;top:23%;width:22%;height:21%;
+          background:rgba(0,140,255,.55);border:2px solid #0080ff;border-radius:8px}
+  .полоса{position:absolute;left:0;right:0;top:54%;bottom:0;background:rgba(255,0,0,.35)}
+  .имя{font-size:12px;color:#8A8A93;margin-top:5px}
+</style>
+<body>
+<h1>Куда нельзя заводить текст</h1>
+<p>Синим — плашка логотипа поверх ленты фото. Красным — часть снимка, которую в ленте вообще не видно. Текст не должен заезжать ни туда, ни туда.</p>
+<div class="сетка" id="сетка"></div>
+<script>
+const ФАЙЛЫ = ['у01-диагностика','у02-глушитель','у03-катализатор','у04-дпф','у05-чип-тюнинг','у06-грм','у07-масло','у08-подвеска','у09-тормоза','у10-кондиционер','у11-стартер','у12-двигатель','у13-эндоскопия','у14-предпродажная','у15-печка','у16-шиномонтаж','у17-допоборудование','у18-ключи'];
+document.getElementById('сетка').innerHTML = ФАЙЛЫ.map(ф => `
+  <div>
+    <div class="кадр">
+      <img src="../cards/${encodeURIComponent(ф)}.png">
+      <div class="полоса"></div><div class="плашка"></div>
+    </div>
+    <div class="имя">${ф}</div>
+  </div>`).join('');
+</script>
+</body>

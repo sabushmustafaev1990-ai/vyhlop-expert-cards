@@ -1,12 +1,14 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>Три варианта знака</title>
+<title>Варианты знака</title>
 <style>
   html,body{margin:0;padding:0}
   body{width:1200px;font:400 17px/1.35 -apple-system,'SF Pro Text','Helvetica Neue',sans-serif;
        background:#fff;color:#16181D;padding:40px 44px}
-  h1{font-size:24px;font-weight:700;margin:0 0 28px}
+  h1{font-size:24px;font-weight:700;margin:0 0 8px}
+  .лид{color:#6E6E76;font-size:16px;margin:0 0 26px}
   .ряд{display:flex;align-items:center;gap:36px;padding:26px 0;border-top:1px solid #E6E6E9}
+  .ряд_сейчас{opacity:.6}
   .номер{font-size:15px;font-weight:700;color:#8A8A93;width:26px;flex:none}
   .крупно svg{border-radius:26px}
   .подпись{width:250px;flex:none}
@@ -20,22 +22,24 @@
   .сноска{color:#8A8A93;font-size:14px;margin-top:22px;border-top:1px solid #E6E6E9;padding-top:16px}
 </style>
 <body>
-<h1>Логотип «Выхлоп-Эксперт» — три варианта</h1>
+<h1>Логотип «Выхлоп-Эксперт» — глушитель</h1>
+<p class="лид">Слева знак крупно, справа — как он будет выглядеть в Яндекс Картах рядом с названием.</p>
 <div id="список"></div>
-<p class="сноска">Слева — как знак выглядит крупно. Справа — как он будет выглядеть в Яндекс Картах рядом с названием.</p>
+<p class="сноска">Рисунок наш. Знак Bosal с присланной картинки не копируется — это чужой товарный знак, модерация Яндекса такое отклоняет.</p>
 <script src="marks.js"></script>
 <script>
-const имена = {
-  1: ['Поток', 'Торец выхлопной трубы и струи выхлопа'],
-  2: ['Буква Э', 'Монограмма «Эксперт» из отрезков трубы'],
-  3: ['Эмблема', 'Плотный круг с вырезанной буквой Э'],
-};
-document.getElementById('список').innerHTML = [1,2,3].map(n => `
-  <div class="ряд">
-    <div class="номер">${n}</div>
-    <div class="крупно">${svg(n, 150)}</div>
-    <div class="подпись"><b>${имена[n][0]}</b><span>${имена[n][1]}</span></div>
-    <div class="карты">${svg(n, 52)}
+const РЯДЫ = [
+  { n: 1, знак: 4, имя: 'Глушитель в круге',  опис: 'Тот же оранжевый круг, что стоит сейчас, но вместо буквы Э — глушитель' },
+  { n: 2, знак: 5, имя: 'Глушитель крупно',   опис: 'Сам предмет во всю площадь, ближе всего к присланной картинке' },
+  { n: 3, знак: 6, имя: 'Глушитель с выхлопом', опис: 'То же плюс три струи, вылетающие из среза трубы' },
+  { n: '', знак: 3, имя: 'Сейчас в карточке', опис: 'Круг с буквой Э — для сравнения, это уже загружено' },
+];
+document.getElementById('список').innerHTML = РЯДЫ.map(р => `
+  <div class="ряд${р.n ? '' : ' ряд_сейчас'}">
+    <div class="номер">${р.n}</div>
+    <div class="крупно">${svg(р.знак, 150)}</div>
+    <div class="подпись"><b>${р.имя}</b><span>${р.опис}</span></div>
+    <div class="карты">${svg(р.знак, 52)}
       <div><b>Выхлоп-Эксперт</b><span>Автосервис · Красногорск</span></div>
     </div>
   </div>`).join('');
