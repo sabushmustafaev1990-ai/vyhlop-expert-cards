@@ -76,8 +76,10 @@ function html(card) {
   html,body{width:${w}px;height:${h}px;overflow:hidden}
   body{font-family:${T.шрифт};background:${c.фон};position:relative}
   .photo{position:absolute;inset:0;${background(card.фото)}}
-  .scrim{position:absolute;inset:0;background:linear-gradient(to top, ${c.фон} ${story ? '30%' : '26%'}, rgba(22,24,29,.74) ${story ? '55%' : '52%'}, rgba(22,24,29,.18))}
-  .wrap{position:absolute;inset:0;padding:${story ? '96px ' + pad + 'px' : pad + 'px'};display:flex;flex-direction:column}
+  .scrim{position:absolute;inset:0;background:${story
+    ? `linear-gradient(to top, ${c.фон} 30%, rgba(22,24,29,.74) 55%, rgba(22,24,29,.18))`
+    : `linear-gradient(to bottom, ${c.фон} 30%, rgba(22,24,29,.76) 58%, rgba(22,24,29,.12))`}}
+  .wrap{position:absolute;inset:0;padding:${story ? '96px ' + pad + 'px' : pad + 'px'};display:flex;flex-direction:column;${story ? '' : 'justify-content:flex-start'}}
   .logo{display:flex;align-items:center;gap:18px}
   .mark{width:74px;height:74px;border-radius:18px;background:${c.акцент};display:flex;align-items:center;justify-content:center;flex:none}
   .mark svg{width:44px;height:44px}
@@ -85,7 +87,7 @@ function html(card) {
   .wordmark b{display:block;font-size:40px;font-weight:800;letter-spacing:-.02em;color:${c.текст}}
   .wordmark span{display:block;font-size:21px;font-weight:600;letter-spacing:.22em;color:${c.текст_приглушённый};margin-top:8px}
   .top{position:relative}
-  .bottom{position:relative;margin-top:auto}
+  .bottom{position:relative;margin-top:${story ? 'auto' : '52px'}}
   .kicker{font-size:${story ? 30 : 26}px;font-weight:700;letter-spacing:.2em;color:${c.акцент};margin-bottom:22px}
   .h1{font-size:${story ? 108 : 84}px;font-weight:800;line-height:.98;letter-spacing:-.03em;color:${c.текст}}
   .mid{margin:auto 0}

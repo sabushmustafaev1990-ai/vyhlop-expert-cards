@@ -340,7 +340,7 @@ ROWS += [
 # Картинки лежат в публичном репозитории — Яндексу нужна прямая https-ссылка,
 # ссылка на Яндекс Диск не подходит. Обновить картинки: node brand/render.js,
 # затем .venv/bin/python brand/publish_images.py и git push в cards-public/.
-БАЗА = "https://raw.githubusercontent.com/sabushmustafaev1990-ai/vyhlop-expert-cards/main/"
+БАЗА = "https://raw.githubusercontent.com/sabushmustafaev1990-ai/vyhlop-expert-cards/main/v2/"
 
 # Первое совпадение по названию услуги выигрывает, поэтому порядок важен:
 # частное выше общего.
