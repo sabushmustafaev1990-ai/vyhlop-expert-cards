@@ -1,0 +1,43 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Три варианта знака</title>
+<style>
+  html,body{margin:0;padding:0}
+  body{width:1200px;font:400 17px/1.35 -apple-system,'SF Pro Text','Helvetica Neue',sans-serif;
+       background:#fff;color:#16181D;padding:40px 44px}
+  h1{font-size:24px;font-weight:700;margin:0 0 28px}
+  .ряд{display:flex;align-items:center;gap:36px;padding:26px 0;border-top:1px solid #E6E6E9}
+  .номер{font-size:15px;font-weight:700;color:#8A8A93;width:26px;flex:none}
+  .крупно svg{border-radius:26px}
+  .подпись{width:250px;flex:none}
+  .подпись b{display:block;font-size:19px;font-weight:700;margin-bottom:5px}
+  .подпись span{color:#6E6E76;font-size:15px}
+  .карты{flex:1;background:#F4F4F6;border-radius:14px;padding:14px 16px;display:flex;
+         align-items:center;gap:13px}
+  .карты svg{border-radius:11px;flex:none}
+  .карты b{display:block;font-size:16px;font-weight:600}
+  .карты span{color:#6E6E76;font-size:14px}
+  .сноска{color:#8A8A93;font-size:14px;margin-top:22px;border-top:1px solid #E6E6E9;padding-top:16px}
+</style>
+<body>
+<h1>Логотип «Выхлоп-Эксперт» — три варианта</h1>
+<div id="список"></div>
+<p class="сноска">Слева — как знак выглядит крупно. Справа — как он будет выглядеть в Яндекс Картах рядом с названием.</p>
+<script src="marks.js"></script>
+<script>
+const имена = {
+  1: ['Поток', 'Торец выхлопной трубы и струи выхлопа'],
+  2: ['Буква Э', 'Монограмма «Эксперт» из отрезков трубы'],
+  3: ['Эмблема', 'Плотный круг с вырезанной буквой Э'],
+};
+document.getElementById('список').innerHTML = [1,2,3].map(n => `
+  <div class="ряд">
+    <div class="номер">${n}</div>
+    <div class="крупно">${svg(n, 150)}</div>
+    <div class="подпись"><b>${имена[n][0]}</b><span>${имена[n][1]}</span></div>
+    <div class="карты">${svg(n, 52)}
+      <div><b>Выхлоп-Эксперт</b><span>Автосервис · Красногорск</span></div>
+    </div>
+  </div>`).join('');
+</script>
+</body>
